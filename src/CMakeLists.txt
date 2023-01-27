@@ -1,0 +1,5 @@
+add_library(protoParser DelimitedMessagesStreamParser.h parseDelimited.h)
+add_library(protoSerialize serializeDelimited.h)
+
+target_link_libraries(protoSerialize PUBLIC proto)
+target_link_libraries(protoParser PUBLIC proto)
