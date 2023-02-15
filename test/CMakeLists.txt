@@ -1,5 +1,6 @@
 add_executable(protoParser_test
-    test.cpp
+    Test_Helpers.cpp
+    Test_DelimitedMessagesStreamParser.cpp
 )
 
 target_include_directories(protoParser_test PRIVATE "${CMAKE_SOURCE_DIR}")

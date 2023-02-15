@@ -1,11 +1,11 @@
-#ifndef DELIMITED_MESSAGES_STREAM_PARSER_H
-#define DELIMITED_MESSAGES_STREAM_PARSER_H
+#ifndef SRC_PROTOBUF_PARSER_DELIMITEDMESSAGESSTREAMPARSER_HPP
+#define SRC_PROTOBUF_PARSER_DELIMITEDMESSAGESSTREAMPARSER_HPP
 
 #include <list>
 #include <memory>
 #include <vector>
 
-#include "parseDelimited.h"
+#include "helpers.hpp"
 
 template<typename MessageType>
 class DelimitedMessagesStreamParser
@@ -32,4 +32,4 @@ class DelimitedMessagesStreamParser
         std::vector<char> m_buffer;
 };
 
-#endif  // DELIMITED_MESSAGES_STREAM_PARSER_H
+#endif  // SRC_PROTOBUF_PARSER_DELIMITEDMESSAGESSTREAMPARSER_HPP
