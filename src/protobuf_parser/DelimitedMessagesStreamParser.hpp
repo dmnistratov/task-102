@@ -13,8 +13,7 @@ class DelimitedMessagesStreamParser
     public:
         typedef std::shared_ptr<const MessageType> PointerToConstValue;
         std::list<PointerToConstValue> parse(const std::string& data){
-            for (auto byte : data)
-                m_buffer.push_back(byte);
+            std::copy(data.begin(),  data.end(), std::back_inserter(m_buffer));
 
             size_t bytesConsumed = 0;
             std::list<PointerToConstValue> messages;

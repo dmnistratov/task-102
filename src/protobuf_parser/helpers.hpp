@@ -47,9 +47,15 @@ std::shared_ptr<Message> parseDelimited(const void* data, size_t size, size_t* b
     if (!data || size == 0)
         return nullptr;
 
-    uint32_t length;
+    uint32_t length = 0;
     google::protobuf::io::CodedInputStream protoStream(static_cast<const uint8_t *>(data), size);
-    protoStream.ReadVarint32(&length);
+    
+    if(!protoStream.ReadVarint32(&length)){
+        if (bytesConsumed)
+            *bytesConsumed = size;
+            
+        return nullptr;
+    }
 
     if (length + PROTOBUF_VARINT_BYTE_SIZE(length) > size || length == 0)
         return nullptr;
@@ -65,6 +71,10 @@ std::shared_ptr<Message> parseDelimited(const void* data, size_t size, size_t* b
         protoStream.PopLimit(limit);
         return message;
     }
+    
+    if (bytesConsumed)
+            *bytesConsumed = length + PROTOBUF_VARINT_BYTE_SIZE(length);
+
     return nullptr;
 };
 
